@@ -1,0 +1,45 @@
+service: aws-todo-app
+frameworkVersion: '3'
+useDotenv: true
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: ${env:REGION}
+  stage: dev
+  environment:
+    TABLE_NAME: ${env:TABLE_NAME}
+    ACCESS_KEY_ID: ${env:ACCESS_KEY_ID}
+    SECRET_ACCESS_KEY: ${env:SECRET_ACCESS_KEY}
+    REGION: ${env:REGION}   
+functions:
+  api:
+    handler: dist/index.handler
+    events:
+       - http: 
+          path: /todo
+          method: GET
+       - http: 
+          path: /todo/{id}
+          method: GET
+       - http:
+          path: /todo/{id}
+          method: PUT
+       - http:
+          path: /todo
+          method: POST
+       - http:
+          path: /todo/{id}
+          method: delete    
+plugins:
+   - serverless-offline
+   - serverless-dotenv-plugin
+package:
+  patterns:
+    - '!node_modules/**'
+    - '!app/**'
+    - '!Dockerfile'
+    - '!package**'
+    - '!**.ts'
+    - '!README.md'
+    - '!tsconfig.json'
+    - 'dist'

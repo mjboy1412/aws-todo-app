@@ -1,0 +1,25 @@
+{
+  "extends": "./tsconfig.package",
+  "include": [
+    "app/**/*",
+    "app/index.ts",
+    "types",
+  ],
+  "compilerOptions": {
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",              
+    "target": "es2020", 
+    "lib": [
+      "es2020"
+    ], 
+    "module": "commonjs", 
+    "rootDir": "./app", 
+    "types": [], 
+    "resolveJsonModule": true,
+    "allowJs": true,  "outDir": "./dist", 
+    "esModuleInterop": true, 
+    "forceConsistentCasingInFileNames": true, 
+    "strict": true, 
+    "noImplicitAny": true, 
+    "skipLibCheck": true 
+  }
+}
